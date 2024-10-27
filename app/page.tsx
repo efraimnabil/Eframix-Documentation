@@ -1,3 +1,4 @@
+import CopyCommand from "@/components/CommandCopy";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -13,9 +14,12 @@ export default function Home() {
         routing, middleware, and JSON body parsing features with zero
         dependencies. Ideal for lightweight HTTP server applications.
       </p>
-      <Button size={"lg"}>
-        <Link href={"/"}>Show documentation</Link>
-      </Button>
+      <div className="space-y-4">
+        <Button size={"lg"}>
+          <Link href={"/"}>Show documentation</Link>
+        </Button>
+        <CopyCommand command="npm i express-minimal" />
+      </div>
     </div>
   );
 }

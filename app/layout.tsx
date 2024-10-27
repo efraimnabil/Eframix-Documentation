@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Express minimal docs",
-  description: "Express minimal docs",
+  title: "Eframix docs",
+  description: "Eframix docs",
 };
 
 export default function RootLayout({

@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { Tooltip, TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Check, Clipboard } from "lucide-react";
+import { useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 interface CopyCommandProps {
   command: string;
 }
@@ -10,26 +11,29 @@ interface CopyCommandProps {
 const CopyCommand: React.FC<CopyCommandProps> = ({ command }) => {
   const [copied, setCopied] = useState<boolean>(false);
 
-  return (
-    <div className="flex items-center justify-center space-x-2 ml-4">
-      <span className="font-mono text-sm text-gray-400">{command}</span>
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-      <CopyToClipboard text={command} onCopy={() => setCopied(true)}>
-        <button className="ml-2">
-          <TooltipProvider>
-            <Tooltip>
-              <span className="opacity-0 hover:opacity-100 group-hover:block text-xs text-gray-200">
-                {copied ? (
-                  <Check className="w-4 h-4 text-gray-400" />
-                ) : (
-                  <Clipboard className="w-4 h-4 text-gray-400" />
-                )}
-              </span>
-            </Tooltip>
-          </TooltipProvider>
-        </button>
+  return (
+    <TooltipProvider>
+      <CopyToClipboard text={command} onCopy={handleCopy}>
+        <div className="flex items-center space-x-2 ml-4 cursor-pointer  relative">
+          <span className="font-mono text-sm text-gray-400 ">
+            {command}
+          </span>
+
+          <span className="transition-opacity">
+            {copied ? (
+              <Check className="w-4 h-4 text-green-500" />
+            ) : (
+              <Clipboard className="w-4 h-4 text-gray-400" />
+            )}
+          </span>
+        </div>
       </CopyToClipboard>
-    </div>
+    </TooltipProvider>
   );
 };
 

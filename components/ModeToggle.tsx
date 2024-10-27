@@ -10,7 +10,7 @@ export function ModeToggle() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="flex justify-end pt-8 px-2 md:px-8">
+    <div>
       <Button
         className="bg-transparent shadow-none"
         variant={"outline"}

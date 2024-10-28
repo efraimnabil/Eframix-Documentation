@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Eframix docs",
-  description: "Eframix docs",
+  title: "Eframix",
+  description: "A minimalistic Node.js framework inspired by Express.js, offering core routing, middleware, and JSON body parsing features with zero dependencies. Ideal for lightweight HTTP server applications.",
 };
 
 export default function RootLayout({

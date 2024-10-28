@@ -27,6 +27,7 @@ const sidebarLinks = [
       { name: "Routing", href: "/docs/routing" },
       { name: "Writing Middleware", href: "/docs/write-middleware" },
       { name: "Using Middleware", href: "/docs/use-middleware" },
+      { name: "Parsing", href: "/docs/parsing" },
     ],
   },
 ];

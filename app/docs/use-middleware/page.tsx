@@ -71,7 +71,7 @@ app.listen(3000, () => {
       </p>
       <div className="flex justify-start items-center mt-16">
         <Button variant="outline" asChild>
-          <Link href="/docs/guide/write-middleware">
+          <Link href="/docs/write-middleware">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Previous: Writing Middleware
           </Link>

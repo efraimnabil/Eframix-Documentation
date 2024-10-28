@@ -94,7 +94,7 @@ app.post('/api/data', (req, res) => {
                     </Link>
                 </Button>
                 <Button asChild>
-                    <Link href="/docs/guide/write-middleware">
+                    <Link href="/docs/write-middleware">
                         Next: Writing Middleware
                         <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>

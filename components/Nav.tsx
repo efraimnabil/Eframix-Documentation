@@ -1,27 +1,27 @@
-"use client"
+"use client";
 
-import { Menu } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import * as React from "react"
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/docs", label: "Docs" },
   { href: "/showcase", label: "Showcase" },
-]
+];
 
 export default function Nav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 w-full px-3 md:px-6 lg:px-10 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center justify-between">
         <Link href="/" className="mr-6 flex items-center space-x-2">
-          <span className="hidden font-bold sm:inline-block">Eframix</span>
+          <span className="font-bold">Eframix</span>
         </Link>
         <div className="mr-4 hidden md:flex">
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -29,8 +29,11 @@ export default function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition-colors hover:text-foreground/80 ${pathname === item.href ? "text-foreground" : "text-foreground/60"
-                  }`}
+                className={`transition-colors hover:text-foreground/80 ${
+                  pathname === item.href
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                }`}
               >
                 {item.label}
               </Link>
@@ -48,13 +51,21 @@ export default function Nav() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="pr-0">
-            <MobileLink href="/" className="flex items-center" onOpenChange={() => { }}>
+            <MobileLink
+              href="/"
+              className="flex items-center"
+              onOpenChange={() => {}}
+            >
               <span className="font-bold">Eframix</span>
             </MobileLink>
             <div className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
               <div className="flex flex-col space-y-3">
                 {navItems.map((item) => (
-                  <MobileLink key={item.href} href={item.href} onOpenChange={() => { }}>
+                  <MobileLink
+                    key={item.href}
+                    href={item.href}
+                    onOpenChange={() => {}}
+                  >
                     {item.label}
                   </MobileLink>
                 ))}
@@ -64,29 +75,36 @@ export default function Nav() {
         </Sheet>
       </div>
     </header>
-  )
+  );
 }
 
 interface MobileLinkProps {
-  href: string
-  onOpenChange?: (open: boolean) => void
-  children: React.ReactNode
-  className?: string
+  href: string;
+  onOpenChange?: (open: boolean) => void;
+  children: React.ReactNode;
+  className?: string;
 }
 
-function MobileLink({ href, onOpenChange, className, children, ...props }: MobileLinkProps) {
-  const pathname = usePathname()
+function MobileLink({
+  href,
+  onOpenChange,
+  className,
+  children,
+  ...props
+}: MobileLinkProps) {
+  const pathname = usePathname();
   return (
     <Link
       href={href}
       onClick={() => {
-        onOpenChange?.(false)
+        onOpenChange?.(false);
       }}
-      className={`${className} ${pathname === href ? "text-foreground" : "text-foreground/60"
-        } transition-colors hover:text-foreground`}
+      className={`${className} ${
+        pathname === href ? "text-foreground" : "text-foreground/60"
+      } transition-colors hover:text-foreground`}
       {...props}
     >
       {children}
     </Link>
-  )
+  );
 }

@@ -1,40 +1,54 @@
-"use client";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { Check, Clipboard } from "lucide-react";
-import { useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+"use client"
+
+import { Check, Copy } from "lucide-react"
+import { useState } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface CopyCommandProps {
-  command: string;
+  command: string
 }
 
-const CopyCommand: React.FC<CopyCommandProps> = ({ command }) => {
-  const [copied, setCopied] = useState<boolean>(false);
+export default function CopyCommand({ command }: CopyCommandProps) {
+  const [copied, setCopied] = useState<boolean>(false)
 
   const handleCopy = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <TooltipProvider>
-      <CopyToClipboard text={command} onCopy={handleCopy}>
-        <div className="flex items-center space-x-2 ml-4 cursor-pointer  relative">
-          <span className="font-mono text-sm text-gray-400 ">
-            {command}
-          </span>
-
-          <span className="transition-opacity">
-            {copied ? (
-              <Check className="w-4 h-4 text-green-500" />
-            ) : (
-              <Clipboard className="w-4 h-4 text-gray-400" />
-            )}
-          </span>
-        </div>
-      </CopyToClipboard>
+      <div className="flex items-center justify-between p-2 bg-muted rounded-md">
+        <code className="font-mono text-sm">{command}</code>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <CopyToClipboard text={command} onCopy={handleCopy}>
+              <Button variant="ghost" size="icon" className="h-8 w-8">
+                {copied ? (
+                  <Check className="h-4 w-4 text-green-500" />
+                ) : (
+                  <Copy className="h-4 w-4" />
+                )}
+                <span className="sr-only">
+                  {copied ? "Copied" : "Copy command"}
+                </span>
+              </Button>
+            </CopyToClipboard>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{copied ? "Copied!" : "Copy command"}</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
     </TooltipProvider>
-  );
-};
+  )
+}
 
-export default CopyCommand;

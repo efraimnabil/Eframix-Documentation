@@ -80,13 +80,13 @@ app.listen(3000, () => {
 
             <div className="flex justify-between items-center mt-16">
                 <Button variant="outline" asChild>
-                    <Link href="/docs/guide/routing">
+                    <Link href="/docs/routing">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Previous: Routing
                     </Link>
                 </Button>
                 <Button asChild>
-                    <Link href="/docs/guide/use-middleware">
+                    <Link href="/docs/use-middleware">
                         Next: Using Middleware
                         <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>

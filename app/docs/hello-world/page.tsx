@@ -58,7 +58,7 @@ app.listen(3000, () => {
                     </Link>
                 </Button>
                 <Button asChild>
-                    <Link href="/docs/guide/routing">
+                    <Link href="/docs/routing">
                         Next: Routing
                         <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>

@@ -52,24 +52,25 @@ export default function WriteMiddleware() {
                     <SyntaxHighlighter
                         language="javascript"
                         code={`
-const Eframix = require('eframix');
+import Eframix, { Handler } from 'eframix';
 const app = new Eframix();
 
-// Custom logging middleware
-const loggingMiddleware = (req, res, next) => {
+// Logging middleware
+const loggingMiddleware: Handler = (req, res, next) => {
   console.log(\`[\${new Date().toISOString()}] \${req.method} \${req.url}\`);
   next();
 };
 
-// Use the middleware
+// Use global middleware
 app.use(loggingMiddleware);
 
 app.get('/', (req, res) => {
-  res.send('Hello, Eframix!');
+  res.end('Hello, Eframix!');
 });
 
-app.listen(3000, () => {
+app.startServer(3000, () => {
   console.log('Server running on http://localhost:3000');
+});
             `.trim()}
                     />
                     <p className="text-muted-foreground mt-4">

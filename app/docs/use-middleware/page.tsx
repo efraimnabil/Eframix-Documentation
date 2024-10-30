@@ -28,22 +28,23 @@ export default function UseMiddleware() {
           <SyntaxHighlighter
             language="javascript"
             code={`
-const Eframix = require('eframix');
+import Eframix, { Handler } from "eframix";
 const app = new Eframix();
 
 // Logging middleware
-const loggingMiddleware = (req, res, next) => {
+const loggingMiddleware: Handler = (req, res, next) => {
   console.log(\`[\${new Date().toISOString()}] \${req.method} \${req.url}\`);
   next();
 };
 
 // Authentication middleware
-const authMiddleware = (req, res, next) => {
+const authMiddleware: Handler = (req, res, next) => {
   const apiKey = req.headers['x-api-key'];
   if (apiKey === 'secret-key') {
     next();
   } else {
-    res.status(401).send('Unauthorized');
+    res.statusCode = 401;
+    res.end('Unauthorized');
   }
 };
 
@@ -52,14 +53,14 @@ app.use(loggingMiddleware);
 
 // Use middleware for specific routes
 app.get('/api/protected', authMiddleware, (req, res) => {
-  res.send('Protected route accessed');
+  res.end('Protected route accessed');
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello, Eframix!');
+  res.end('Hello, Eframix!');
 });
 
-app.listen(3000, () => {
+app.startServer(3000, () => {
   console.log('Server running on http://localhost:3000');
 });
             `.trim()}

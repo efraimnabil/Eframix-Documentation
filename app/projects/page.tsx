@@ -13,19 +13,25 @@ interface Project {
 }
 
 async function fetchProjects() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
-    next: { revalidate: 60 },
-  })
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch projects')
-  }
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, {
+      next: { revalidate: 60 },
+    });
 
-  return response.json()
+    if (!response.ok) {
+      console.error('Failed to fetch projects:', response.statusText);
+      return []
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('An error occurred while fetching projects:', error);
+    return []; 
+  }
 }
 
 export default async function ProjectsShowcase() {
-  const projects: Project[] = await fetchProjects()
+  const projects: Project[] = await fetchProjects();
 
   return (
     <div className="container mx-auto py-8">

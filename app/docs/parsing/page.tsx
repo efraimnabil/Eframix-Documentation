@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Metadata } from "next"
 import Link from "next/link"
 
@@ -77,12 +77,6 @@ app.startServer(5001, () => {
                     <Link href="/docs/use-middleware">
                         <ArrowLeft className="mr-2 h-4 w-4" />
                         Previous: Using Middleware
-                    </Link>
-                </Button>
-                <Button asChild>
-                    <Link href="/docs/next-section">
-                        Next: Next Section
-                        <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                 </Button>
             </div>

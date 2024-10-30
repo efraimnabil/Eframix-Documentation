@@ -37,7 +37,7 @@ const Eframix = require('eframix');
 const app = new Eframix();
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.end('Hello, World!');
 });
 
 app.startServer(3000, () => {

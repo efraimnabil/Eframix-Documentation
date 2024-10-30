@@ -39,7 +39,7 @@ export default function Routing() {
                         language="javascript"
                         code={`
 app.get('/', (req, res) => {
-  res.send('Home Page');
+  res.end('Home Page');
 });
             `.trim()}
                     />
@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
                         language="javascript"
                         code={`
 app.get('/about', (req, res) => {
-  res.send('About Page');
+  res.end('About Page');
 });
             `.trim()}
                     />

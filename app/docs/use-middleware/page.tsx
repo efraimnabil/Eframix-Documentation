@@ -70,7 +70,7 @@ app.startServer(3000, () => {
       <p className="text-muted-foreground mt-4">
         This example demonstrates how to use multiple middleware functions, both globally and for specific routes.
       </p>
-      <div className="flex justify-start items-center mt-16">
+      <div className="flex justify-between items-center mt-16">
         <Button variant="outline" asChild>
           <Link href="/docs/write-middleware">
             <ArrowLeft className="mr-2 h-4 w-4" />
